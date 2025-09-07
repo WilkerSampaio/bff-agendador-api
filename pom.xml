@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wilker</groupId>
-	<artifactId>bff-agendador-tarefas</artifactId>
+	<artifactId>bff-agendador-tarefas-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bff-agendador-tarefas</name>
+	<name>bff-agendador-tarefas-api</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

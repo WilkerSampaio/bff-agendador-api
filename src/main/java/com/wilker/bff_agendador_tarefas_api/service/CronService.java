@@ -34,7 +34,7 @@ public class CronService {
         String token = login(converterParaRequestDTO());
         log.info("iniciado a busca de tarefas");
 
-       LocalDateTime horaFutura = LocalDateTime.now().plusHours(1);
+        LocalDateTime horaFutura = LocalDateTime.now().plusHours(1);
        LocalDateTime horaFuturaMaisCinco = LocalDateTime.now().plusHours(1).plusMinutes(5);
        List<TarefasDTOResponse> listaDeTarefas = tarefasService.buscaListaDeTarefaPorPeriodo(horaFutura, horaFuturaMaisCinco,
                token);
