@@ -4,6 +4,7 @@ package com.wilker.bff_agendador_tarefas_api.controller;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.in.TarefasDTORequest;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.out.TarefasDTOResponse;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.enums.StatusNotificacaoEnum;
+import com.wilker.bff_agendador_tarefas_api.infrastructure.security.SecurityConfig;
 import com.wilker.bff_agendador_tarefas_api.service.TarefasService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

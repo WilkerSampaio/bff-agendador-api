@@ -7,6 +7,7 @@ import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.in.UsuarioDTORequ
 import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.out.EnderecoDTOResponse;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.out.TelefoneDTOResponse;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.out.UsuarioDTOResponse;
+import com.wilker.bff_agendador_tarefas_api.infrastructure.security.SecurityConfig;
 import com.wilker.bff_agendador_tarefas_api.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
