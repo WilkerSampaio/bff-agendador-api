@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@FeignClient(name = "tarefa", url = "${tarefa.url}")
+@FeignClient(name = "tarefa", url = "${tarefas.url}")
 public interface TarefaClient {
 
     @PostMapping
