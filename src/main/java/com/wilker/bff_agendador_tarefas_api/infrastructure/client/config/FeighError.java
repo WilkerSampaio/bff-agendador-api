@@ -1,46 +1,55 @@
 package com.wilker.bff_agendador_tarefas_api.infrastructure.client.config;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.out.ErrorDTOResponse;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.BussinessException;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.ConflictException;
+import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.IllegalArgumentException;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.ResourceNotFoundException;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.UnauthorizedException;
 import feign.Response;
-import feign.Util;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 @Slf4j
 public class FeighError implements ErrorDecoder {
 
+
     @Override
     public Exception decode(String methodKey, Response response) {
-        String body = "";
+        String mensagem = mensagemErro(response);
 
-        try {
-            if (response.body() != null) {
-                body = Util.toString(response.body().asReader());
-            }
-        } catch (IOException e) {
-            log.error("Erro ao ler o corpo da resposta Feign", e);
-        }
-
-        log.error("Erro Feign - método: {}, status: {}", methodKey, response.status());
-
-        switch (response.status()){
+        switch (response.status()) {
             case 409:
-                return new ConflictException("Erro: 409, atributo já existente");
-
+                return new ConflictException(mensagem);
             case 404:
-                return new ResourceNotFoundException("Erro: 404, recurso não encontrado");
-
+                return new ResourceNotFoundException(mensagem);
             case 401:
-                return new UnauthorizedException("Erro: 401, usuário não autorizado");
-
+                return new UnauthorizedException(mensagem);
+            case 400:
+                return new IllegalArgumentException(mensagem);
             default:
-                return new BussinessException("Erro " + response.status() + ": Erro inesperado. Detalhes: " + body);
+                return new BussinessException("Erro inesperado: " + mensagem);
+        }
+    }
+
+    private String mensagemErro(Response response) {
+        try {
+            if (Objects.isNull(response.body())) {
+                return "";
+            }
+
+            String json = new String(response.body().asInputStream().readAllBytes(), StandardCharsets.UTF_8);
+            ObjectMapper mapper = new ObjectMapper();
+            ErrorDTOResponse error = mapper.readValue(json, ErrorDTOResponse.class);
+            return error.getMensagem(); // pega só a mensagem
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
