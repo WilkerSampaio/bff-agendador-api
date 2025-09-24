@@ -108,7 +108,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/endereco/{cep}")
-    @Operation(summary = "Busca endereço pelo cep", description = "Busca dados de endereço recebendo um CEP")
+    @Operation(summary = "Busca Endereço pelo CEP", description = "Busca dados de endereço recebendo um CEP")
     public ResponseEntity<ViaCepDTOResponse> buscarEndereco(@PathVariable("cep") String cep){
         return ResponseEntity.ok(usuarioService.buscarEnderecoPorCep(cep));
     }

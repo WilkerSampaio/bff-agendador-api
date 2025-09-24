@@ -19,7 +19,6 @@ import java.util.Objects;
 @Slf4j
 public class FeighError implements ErrorDecoder {
 
-
     @Override
     public Exception decode(String methodKey, Response response) {
         String mensagem = mensagemErro(response);
