@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 
 public class UsuarioDTOResponse {
+    private Long id;
     private String nome;
     private String email;
     private String senha;
