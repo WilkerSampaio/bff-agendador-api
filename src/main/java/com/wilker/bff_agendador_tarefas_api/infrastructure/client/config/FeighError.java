@@ -3,11 +3,8 @@ package com.wilker.bff_agendador_tarefas_api.infrastructure.client.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.out.ErrorDTOResponse;
-import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.BussinessException;
-import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.ConflictException;
+import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.*;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.IllegalArgumentException;
-import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.ResourceNotFoundException;
-import com.wilker.bff_agendador_tarefas_api.infrastructure.exceptions.UnauthorizedException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +45,7 @@ public class FeighError implements ErrorDecoder {
             ErrorDTOResponse error = mapper.readValue(json, ErrorDTOResponse.class);
             return error.getMensagem(); // pega só a mensagem
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ResponseParsingException("Erro ao processar corpo da resposta da API");
         }
     }
 }
