@@ -1,6 +1,6 @@
 package com.wilker.bff_agendador_tarefas_api.controller;
 
-import com.wilker.bff_agendador_tarefas_api.infrastructure.annotations.ApiErrorResponses;
+import com.wilker.bff_agendador_tarefas_api.infrastructure.annotations.ApiUsuarioResponses;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.in.EnderecoDTORequest;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.in.LoginDTORequest;
 import com.wilker.bff_agendador_tarefas_api.infrastructure.dto.in.TelefoneDTORequest;
@@ -28,7 +28,7 @@ public class UsuarioController {
 
     @PostMapping
     @Operation(summary = "Salva Usuários", description = "Cria um novo usuário")
-    @ApiErrorResponses
+    @ApiUsuarioResponses
 
     public ResponseEntity<UsuarioDTOResponse> registraUsuario(@RequestBody UsuarioDTORequest usuarioDTORequest) {
         return ResponseEntity.ok(usuarioService.salvarUsuario(usuarioDTORequest));
@@ -36,14 +36,14 @@ public class UsuarioController {
 
     @PostMapping("/login")
     @Operation(summary = "Login Usuário", description = "Authentica usuário")
-    @ApiErrorResponses
+    @ApiUsuarioResponses
     public String authenticarUsuario(@RequestBody LoginDTORequest loginDTORequest){
         return usuarioService.authenticarUsuario(loginDTORequest);
     }
 
     @GetMapping
     @Operation(summary = "Buscar Dados do Usuário por Email", description = "Buscar dados do usuário por email ")
-    @ApiErrorResponses
+    @ApiUsuarioResponses
     @SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
     public ResponseEntity<UsuarioDTOResponse> buscarUsuarioPeloEmail(@RequestParam ("email") String email,
                                                                      @RequestHeader(value = "Authorization", required = false) String token){
@@ -52,7 +52,7 @@ public class UsuarioController {
 
     @DeleteMapping("/{email}")
     @Operation(summary = "Deleta um Usuário", description = "Deleta um usuário por email")
-    @ApiErrorResponses
+    @ApiUsuarioResponses
     @SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
     public ResponseEntity<Void> deletaUsuarioPeloEmail(@PathVariable String email,
                                                        @RequestHeader (name = "Authorization", required = false) String token){
@@ -62,7 +62,7 @@ public class UsuarioController {
 
     @PutMapping
     @Operation(summary = "Atualiza Dados do Usuário", description = "Atualiza dados de um usuário")
-    @ApiErrorResponses
+    @ApiUsuarioResponses
     @SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
     public ResponseEntity<UsuarioDTOResponse> atualizarDadosUsuario(@RequestBody UsuarioDTORequest usuarioDTORequest,
                                                                     @RequestHeader (name = "Authorization", required = false) String token){
@@ -71,7 +71,7 @@ public class UsuarioController {
 
     @PutMapping("/endereco")
     @Operation(summary = "Atualiza Endereço do Usuário", description = "Atualiza um endereço do usuário")
-    @ApiErrorResponses
+    @ApiUsuarioResponses
     @SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
     public ResponseEntity<EnderecoDTOResponse> atualizarEndereco(@RequestBody EnderecoDTORequest enderecoDTORequest,
                                                                  @RequestParam("id") Long id,
@@ -81,7 +81,7 @@ public class UsuarioController {
 
     @PutMapping("/telefone")
     @Operation(summary = "Atualiza Telefone do Usuário", description = "Atualiza um telefone do usuário")
-    @ApiErrorResponses
+    @ApiUsuarioResponses
     @SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
     public ResponseEntity<TelefoneDTOResponse> atualizarTelefone(@RequestBody TelefoneDTORequest telefoneDTORequest,
                                                                  @RequestParam ("id") Long id,
@@ -91,7 +91,7 @@ public class UsuarioController {
 
     @PostMapping("/endereco")
     @Operation(summary = "Salva Novo Endereço do Usuário", description = "Salva endereço de usuário")
-    @ApiErrorResponses
+    @ApiUsuarioResponses
     @SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
     public ResponseEntity<EnderecoDTOResponse> cadastrarEndereco (@RequestBody EnderecoDTORequest enderecoDTORequest,
                                                                   @RequestHeader (name = "Authorization", required = false) String token){
@@ -100,7 +100,7 @@ public class UsuarioController {
 
     @PostMapping("/telefone")
     @Operation(summary = "Salva Novo Telefone do Usuário", description = "Salva telefone de usuário")
-    @ApiErrorResponses
+    @ApiUsuarioResponses
     @SecurityRequirement(name = SecurityConfig.SECURITY_SCHEME)
     public ResponseEntity<TelefoneDTOResponse> cadastrarTelefone(@RequestBody TelefoneDTORequest telefoneDTORequest,
                                                                  @RequestHeader (name = "Authorization", required = false) String token){

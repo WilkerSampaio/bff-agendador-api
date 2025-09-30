@@ -15,5 +15,5 @@ import java.lang.annotation.*;
         @ApiResponse(responseCode = "409", description = "Conflito"),
         @ApiResponse(responseCode = "500", description = "Erro interno")
 })
-public @interface ApiErrorResponses {
+public @interface ApiUsuarioResponses {
 }
