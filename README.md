@@ -1,5 +1,6 @@
 # 🌐 BFF Agendador de Tarefas API
-<img width="1012" height="735" alt="image" src="https://github.com/user-attachments/assets/fb815add-cb90-4e0d-992f-01dc931be9c6" />
+<img width="1005" height="597" alt="image" src="https://github.com/user-attachments/assets/32b8cb88-5430-4670-a307-20972d0f13c5" />
+
 
 O **BFF (Backend for Frontend)** é a camada que centraliza as chamadas para as três APIs principais do sistema:  
 
