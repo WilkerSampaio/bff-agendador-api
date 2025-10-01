@@ -144,9 +144,9 @@ O fluxo funciona assim:
 
 1. O **BFF** recebe a requisição do cliente  
 2. Ele redireciona a chamada para a API correspondente:  
-   - **Usuário API** → cadastro/autenticação  
-   - **Agendador de Tarefas API** → manipulação de tarefas  
-   - **Notificação API** → disparo de e-mails  
+   - **Usuário API** → cadastro/autenticação  - https://github.com/WilkerSampaio/usuario-api
+   - **Agendador de Tarefas API** → manipulação de tarefas  - https://github.com/WilkerSampaio/agendador-tarefas-api
+   - **Notificação API** → disparo de e-mails  - https://github.com/WilkerSampaio/notificacao
 3. O **cron job** (interno ao BFF) chama a Notificação API a cada 30 segundos para avisar sobre tarefas pendentes  
 
----
+
